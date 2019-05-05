@@ -1,0 +1,21 @@
+{
+    "name": "inventory",
+    "version": "1.0.0",
+    "description": "Ventas de almacen, entrada y salida de articulos, alta de proveedores",
+    "main": "index.js",
+    "scripts": {
+        "dev": "nodemon src/index.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.16.3",
+        "jsonwebtoken": "^8.5.1",
+        "lodash": "^4.17.11",
+        "mysql": "^2.15.0"
+    },
+    "devDependencies": {
+        "nodemon": "^1.17.5"
+    }
+}
