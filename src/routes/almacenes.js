@@ -41,17 +41,16 @@ router.get('/', mdAutenticacion.verificaToken, (req, res) => {
 router.post('/alta_almacen', mdAutenticacion.verificaToken, (req, res) => {
 
     const { nombre, tipo } = req.body;
-    let cousuario = req.usuario.cod;
+    let codusuario = req.usuario.cod;
 
     var almacen = new Almacenes();
 
-    almacen.altaAlmacen(nombre, tipo, cousuario)
+    almacen.altaAlmacen(nombre, tipo, codusuario)
         .then(function(dato) {
+
 
             if (dato && dato.length > 0) {
                 console.log(dato);
-
-
 
                 return res.status(200).json({
                     ok: true,
