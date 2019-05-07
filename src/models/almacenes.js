@@ -54,6 +54,11 @@ module.exports = class Almacenes {
 
     }
 
+    //  POSTMAN
+    //  Params:   token=
+    //  Headers:  Content-type application/json
+    //  Body raw: {"nombre": "ALMACEN JSON2 MODIFI","tipo": "bodega","codid": "33"}
+
     modificarAlmacen(nombre, tipo, codid, codusuario) {
 
         return new Promise(function(resolve, reject) {
