@@ -115,7 +115,42 @@ router.post('/modificar_almacen', mdAutenticacion.verificaToken, (req, res) => {
 });
 
 
+// Delete bien, pero entra en el else status(200) y da ok:false y mensaje: 'no se encontraron registros'
+// Imagino que hay que mejorar el if(dato) algo he echo mal.
 
+router.delete('/eliminar_almacen', mdAutenticacion.verificaToken, (req, res) => {
+
+    const { cod } = req.body;
+
+    var almacenes = new Almacenes();
+
+
+    almacenes.eliminarAlmacen(cod)
+
+    .then(function(dato) {
+
+        if (dato && dato.length > 0) {
+            console.log(dato);
+            return res.status(200).json({
+                ok: true,
+                resp: dato
+            });
+
+        } else {
+            return res.status(200).json({
+                ok: false,
+                mensaje: 'No se encontraron registros'
+            });
+        }
+
+    }).catch(function(err) {
+        return res.status(500).json({
+            ok: false,
+            mensaje: 'Error interno'
+        });
+    });
+
+});
 
 
 

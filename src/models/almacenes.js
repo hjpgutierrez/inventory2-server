@@ -81,6 +81,32 @@ module.exports = class Almacenes {
 
     }
 
-    eliminarAlmacen() {}
+
+    //  POSTMAN
+    //  Params:   token=
+    //  Headers:  Content-type application/json
+    //  Body raw: {"cod": 33}
+
+    eliminarAlmacen(cod) {
+
+        return new Promise(function(resolve, reject) {
+            var connection = require('./database');
+
+            var query_str =
+                "DELETE FROM inv_almacen WHERE cod = ?;";
+
+            var query_var = [cod];
+
+            connection.query(query_str, query_var, function(err, rows) {
+
+                if (err) {
+                    return reject(err);
+                }
+
+                resolve(rows);
+            });
+        });
+
+    }
 
 };
