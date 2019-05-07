@@ -80,12 +80,12 @@ router.post('/alta_almacen', mdAutenticacion.verificaToken, (req, res) => {
 
 router.post('/modificar_almacen', mdAutenticacion.verificaToken, (req, res) => {
 
-    const { nombre, tipo, codid } = req.body;
-    let codusuario = req.usuario.cod;
+    const { nombre, tipo, cod } = req.body;
+    let cod_user_mod = req.usuario.cod;
 
     var almacenes = new Almacenes();
 
-    almacenes.modificarAlmacen(nombre, tipo, codid, codusuario)
+    almacenes.modificarAlmacen(nombre, tipo, cod, cod_user_mod)
 
     .then(function(dato) {
 

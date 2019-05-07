@@ -57,9 +57,9 @@ module.exports = class Almacenes {
     //  POSTMAN
     //  Params:   token=
     //  Headers:  Content-type application/json
-    //  Body raw: {"nombre": "ALMACEN JSON2 MODIFI","tipo": "bodega","codid": "33"}
+    //  Body raw: {"nombre": "ALMACEN JSON2 MODIFI","tipo": "bodega","cod": "33"}
 
-    modificarAlmacen(nombre, tipo, codid, codusuario) {
+    modificarAlmacen(nombre, tipo, cod, cod_user_mod) {
 
         return new Promise(function(resolve, reject) {
             var connection = require('./database');
@@ -67,7 +67,7 @@ module.exports = class Almacenes {
             var query_str =
                 "UPDATE  inv_almacen SET nombre = ?, tipo = ?, cod_user_mod = ?, fecha_mod = NOW() WHERE cod = ?;";
 
-            var query_var = [nombre, tipo, codusuario, codid];
+            var query_var = [nombre, tipo, cod_user_mod, cod];
 
             connection.query(query_str, query_var, function(err, rows) {
 
