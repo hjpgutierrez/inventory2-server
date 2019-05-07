@@ -21,9 +21,13 @@ app.use(express.json());
 var loginRoutes = require('./routes/login');
 var logRoutes = require('./routes/log');
 var roturasRoutes = require('./routes/roturas');
+var almacenesRoutes = require('./routes/almacenes');
+
+
 app.use('/login', loginRoutes);
 app.use('/log', logRoutes);
 app.use('/roturas', roturasRoutes);
+app.use('/almacenes', almacenesRoutes);
 
 // Starting the server
 app.listen(app.get('port'), () => {
