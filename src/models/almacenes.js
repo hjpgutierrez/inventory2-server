@@ -37,7 +37,7 @@ module.exports = class Almacenes {
             var connection = require('./database');
 
             var query_str =
-                "INSERT INTO inv_almacen (nombre,tipo,cod_user_alta,fecha_alta) values (?,?,?,datetime('now'));";
+                "INSERT INTO inv_almacen (nombre,tipo,cod_user_alta,fecha_alta) values (?,?,?,NOW());";
 
             var query_var = [nombre, tipo, codusuario];
 
@@ -57,7 +57,7 @@ module.exports = class Almacenes {
     //  POSTMAN
     //  Params:   token=
     //  Headers:  Content-type application/json
-    //  Body raw: {"nombre": "ALMACEN JSON2 MODIFI","tipo": "bodega","cod": "33"}
+    //  Body raw: {"nombre": "ALMACEN JSON2 MODIFI","tipo": "bodega","cod": 33}
 
     modificarAlmacen(nombre, tipo, cod, cod_user_mod) {
 

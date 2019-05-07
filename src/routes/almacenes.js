@@ -39,7 +39,7 @@ router.get('/', mdAutenticacion.verificaToken, (req, res) => {
 
 });
 
-// Inserta bien el dato, pero entra en el else status(200) y da ok:false y mensaje: 'no se encontraron registros'
+// Inserta bien, pero entra en el else status(200) y da ok:false y mensaje: 'no se encontraron registros'
 // Imagino que hay que mejorar el if(dato) algo he echo mal.
 
 router.post('/alta_almacen', mdAutenticacion.verificaToken, (req, res) => {
@@ -77,6 +77,8 @@ router.post('/alta_almacen', mdAutenticacion.verificaToken, (req, res) => {
 
 });
 
+// Update bien, pero entra en el else status(200) y da ok:false y mensaje: 'no se encontraron registros'
+// Imagino que hay que mejorar el if(dato) algo he echo mal.
 
 router.post('/modificar_almacen', mdAutenticacion.verificaToken, (req, res) => {
 
