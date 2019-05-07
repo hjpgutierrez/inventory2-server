@@ -76,4 +76,46 @@ router.post('/alta_almacen', mdAutenticacion.verificaToken, (req, res) => {
         });
 
 });
+
+
+router.post('/modificar_almacen', mdAutenticacion.verificaToken, (req, res) => {
+
+    const { nombre, tipo, codid } = req.body;
+    let codusuario = req.usuario.cod;
+
+    var almacenes = new Almacenes();
+
+    almacenes.modificarAlmacen(nombre, tipo, codid, codusuario)
+
+    .then(function(dato) {
+
+        if (dato && dato.length > 0) {
+            console.log(dato);
+            return res.status(200).json({
+                ok: true,
+                resp: dato
+            });
+
+        } else {
+            return res.status(200).json({
+                ok: false,
+                mensaje: 'No se encontraron registros'
+            });
+        }
+
+    }).catch(function(err) {
+        return res.status(500).json({
+            ok: false,
+            mensaje: 'Error interno'
+        });
+    });
+
+});
+
+
+
+
+
+
+
 module.exports = router;

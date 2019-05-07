@@ -54,7 +54,27 @@ module.exports = class Almacenes {
 
     }
 
-    modificarAlmacen() {}
+    modificarAlmacen(nombre, tipo, codid, codusuario) {
+
+        return new Promise(function(resolve, reject) {
+            var connection = require('./database');
+
+            var query_str =
+                "UPDATE  inv_almacen SET nombre = ?, tipo = ?, cod_user_mod = ?, fecha_mod = NOW() WHERE cod = ?;";
+
+            var query_var = [nombre, tipo, codusuario, codid];
+
+            connection.query(query_str, query_var, function(err, rows) {
+
+                if (err) {
+                    return reject(err);
+                }
+
+                resolve(rows);
+            });
+        });
+
+    }
 
     eliminarAlmacen() {}
 
