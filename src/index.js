@@ -15,7 +15,6 @@ app.use(function(req, res, next) {
 // Middlewares
 app.use(express.json());
 
-// Prueba de commit
 
 // Routes
 var loginRoutes = require('./routes/login');
@@ -29,7 +28,10 @@ app.use('/log', logRoutes);
 app.use('/roturas', roturasRoutes);
 app.use('/almacenes', almacenesRoutes);
 
+
+
 // Starting the server
 app.listen(app.get('port'), () => {
     console.log(`Server on port ${app.get('port')}`);
+
 });
