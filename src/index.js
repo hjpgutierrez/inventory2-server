@@ -21,12 +21,14 @@ var loginRoutes = require('./routes/login');
 var logRoutes = require('./routes/log');
 var roturasRoutes = require('./routes/roturas');
 var almacenesRoutes = require('./routes/almacenes');
+var proveedoresRoutes = require('./routes/proveedores');
 
 
 app.use('/login', loginRoutes);
 app.use('/log', logRoutes);
 app.use('/roturas', roturasRoutes);
 app.use('/almacenes', almacenesRoutes);
+app.use('/proveedores', proveedoresRoutes);
 
 
 
