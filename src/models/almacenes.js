@@ -37,7 +37,7 @@ module.exports = class Almacenes {
             var connection = require('./database');
 
             var query_str =
-                "INSERT INTO inv_almacen (nombre,tipo,cod_user_alta,fecha_alta) values (?,?,?,NOW());";
+                "INSERT INTO inv_almacen (nombre,tipo,cod_user_alta,fecha_alta) values (?,?,?,datetime('now'));";
 
             var query_var = [nombre, tipo, codusuario];
 
