@@ -5,6 +5,9 @@ var Almacenes = require('../models/almacenes');
 
 var mdAutenticacion = require('../middlewares/autenticacion');
 
+
+// cargarAlmacen ok
+
 router.get('/', mdAutenticacion.verificaToken, (req, res) => {
 
     var almacenes = new Almacenes();
@@ -36,7 +39,8 @@ router.get('/', mdAutenticacion.verificaToken, (req, res) => {
 
 });
 
-
+// Inserta bien el dato, pero entra en el else status(200) y da ok:false y mensaje: 'no se encontraron registros'
+// Imagino que hay que mejorar el if(dato) algo he echo mal.
 
 router.post('/alta_almacen', mdAutenticacion.verificaToken, (req, res) => {
 
