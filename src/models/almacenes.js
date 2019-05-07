@@ -31,6 +31,7 @@ module.exports = class Almacenes {
         });
     }
 
+
     altaAlmacen(nombre, tipo, codusuario) {
         return new Promise(function(resolve, reject) {
             var connection = require('./database');
