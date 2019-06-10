@@ -6,8 +6,6 @@ var Almacenes = require('../models/almacenes');
 var mdAutenticacion = require('../middlewares/autenticacion');
 
 
-// cargarAlmacen ok
-
 router.get('/', mdAutenticacion.verificaToken, (req, res) => {
 
     var almacenes = new Almacenes();
@@ -17,10 +15,18 @@ router.get('/', mdAutenticacion.verificaToken, (req, res) => {
     .then(function(dato) {
 
         if (dato && dato.length > 0) {
-            console.log(dato);
+
+            let lista = dato.map((fila) => {
+                return {
+                    cod: fila.cod,
+                    nombre: fila.nombre,
+                    tipo: fila.tipo,
+                }
+            });
+
             return res.status(200).json({
                 ok: true,
-                resp: dato
+                resp: lista
             });
 
         } else {
@@ -39,32 +45,25 @@ router.get('/', mdAutenticacion.verificaToken, (req, res) => {
 
 });
 
-// Inserta bien, pero entra en el else status(200) y da ok:false y mensaje: 'no se encontraron registros'
-// Imagino que hay que mejorar el if(dato) algo he echo mal.
-
-router.post('/alta_almacen', mdAutenticacion.verificaToken, (req, res) => {
+router.post('/insertaralmacen', mdAutenticacion.verificaToken, (req, res) => {
 
     const { nombre, tipo } = req.body;
     let codusuario = req.usuario.cod;
 
     var almacen = new Almacenes();
 
-    almacen.altaAlmacen(nombre, tipo, codusuario)
+    almacen.insertarAlmacen(nombre, tipo, codusuario)
         .then(function(dato) {
 
-
-            if (dato && dato.length > 0) {
-                console.log(dato);
-
+            if (dato > 0) {
                 return res.status(200).json({
                     ok: true,
                     resp: dato
                 });
-
             } else {
                 return res.status(200).json({
                     ok: false,
-                    mensaje: 'No se encontraron registros'
+                    mensaje: 'No se inserto el almacen'
                 });
             }
 
@@ -77,22 +76,18 @@ router.post('/alta_almacen', mdAutenticacion.verificaToken, (req, res) => {
 
 });
 
-// Update bien, pero entra en el else status(200) y da ok:false y mensaje: 'no se encontraron registros'
-// Imagino que hay que mejorar el if(dato) algo he echo mal.
-
-router.post('/modificar_almacen', mdAutenticacion.verificaToken, (req, res) => {
+router.post('/actualizaralmacen', mdAutenticacion.verificaToken, (req, res) => {
 
     const { nombre, tipo, cod } = req.body;
     let cod_user_mod = req.usuario.cod;
 
     var almacenes = new Almacenes();
 
-    almacenes.modificarAlmacen(nombre, tipo, cod, cod_user_mod)
+    almacenes.actualizarAlmacen(nombre, tipo, cod, cod_user_mod)
 
     .then(function(dato) {
 
-        if (dato && dato.length > 0) {
-            console.log(dato);
+        if (dato > 0) {
             return res.status(200).json({
                 ok: true,
                 resp: dato
@@ -101,7 +96,7 @@ router.post('/modificar_almacen', mdAutenticacion.verificaToken, (req, res) => {
         } else {
             return res.status(200).json({
                 ok: false,
-                mensaje: 'No se encontraron registros'
+                mensaje: 'No se puedo actualizar el almacen'
             });
         }
 
@@ -115,22 +110,18 @@ router.post('/modificar_almacen', mdAutenticacion.verificaToken, (req, res) => {
 });
 
 
-// Delete bien, pero entra en el else status(200) y da ok:false y mensaje: 'no se encontraron registros'
-// Imagino que hay que mejorar el if(dato) algo he echo mal.
-
-router.delete('/eliminar_almacen', mdAutenticacion.verificaToken, (req, res) => {
+router.delete('/borraralmacen', mdAutenticacion.verificaToken, (req, res) => {
 
     const { cod } = req.body;
 
     var almacenes = new Almacenes();
 
-
-    almacenes.eliminarAlmacen(cod)
+    almacenes.borrarAlmacen(cod)
 
     .then(function(dato) {
 
-        if (dato && dato.length > 0) {
-            console.log(dato);
+        if (dato > 0) {
+
             return res.status(200).json({
                 ok: true,
                 resp: dato
@@ -139,7 +130,7 @@ router.delete('/eliminar_almacen', mdAutenticacion.verificaToken, (req, res) => 
         } else {
             return res.status(200).json({
                 ok: false,
-                mensaje: 'No se encontraron registros'
+                mensaje: 'No se encontró el proveedor'
             });
         }
 
